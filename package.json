@@ -13,7 +13,8 @@
     "build": "tsc",
     "start": "node build/server.js",
     "knex": "node --import tsx ./node_modules/.bin/knex",
-    "prisma": "npx prisma db pull && npx prisma generate"
+    "prisma": "npx prisma db pull && npx prisma generate",
+    "heroku-postbuild": "npm install --omit=dev && npm run build"
   },
   "author": "Rodrigo Lopes",
   "license": "ISC",
@@ -22,13 +23,13 @@
     "@prisma/client": "^5.21.0",
     "express": "^4.19.2",
     "module-alias": "^2.2.3",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^22.7.5",
     "prisma": "^5.21.0",
-    "tsx": "^4.19.1",
-    "typescript": "^5.6.3"
+    "tsx": "^4.19.1"
   }
 }
