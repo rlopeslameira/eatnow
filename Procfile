@@ -1,2 +1,2 @@
 web: node build/server.js
-release: node build/ace --force
+release: node build --force

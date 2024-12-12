@@ -8,8 +8,9 @@ datasource db {
 }
 
 model Category {
-  id   String @id @default(uuid()) @db.VarChar(255)
-  name String @db.VarChar(255)
+  id      String   @id @default(uuid()) @db.VarChar(255)
+  name    String   @db.VarChar(255)
+  markets Market[]
 
   @@map("categories")
 }
@@ -18,21 +19,26 @@ model Rules {
   id          String @id @default(uuid()) @db.VarChar(255)
   description String @db.VarChar(255)
   marketId    String @map("market_id") @db.VarChar(255)
+  markets     Market @relation(fields: [marketId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_rules_markets")
 
+  @@index([marketId], map: "FK_rules_markets")
   @@map("rules")
 }
 
 model Market {
-  id          String @id @default(uuid()) @db.VarChar(255)
-  name        String @db.VarChar(255)
-  description String @db.VarChar(255)
+  id          String   @id @default(uuid()) @db.VarChar(255)
+  name        String   @db.VarChar(255)
+  description String   @db.VarChar(255)
   coupons     Int
   latitude    Float
   longitude   Float
-  address     String @db.VarChar(255)
-  phone       String @db.VarChar(255)
-  cover       String @db.VarChar(255)
-  categoryId  String @map("category_id") @db.VarChar(255)
+  address     String   @db.VarChar(255)
+  phone       String   @db.VarChar(255)
+  cover       String   @db.VarChar(255)
+  categoryId  String   @map("category_id") @db.VarChar(255)
+  categories  Category @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_markets_categories")
+  rules       Rules[]
 
+  @@index([categoryId], map: "FK_markets_categories")
   @@map("markets")
 }

@@ -6,15 +6,12 @@
     "node": ">=18.0.1"
   },
   "scripts": {
-    "dev": "tsx watch src/server.ts",    
-    "build": "node ace build --production --ignore-ts-errors",
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node build/server.js",
     "knex": "node --import tsx ./node_modules/.bin/knex",
-    "start": "node server.js",
     "prisma": "npx prisma db pull && npx prisma generate"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
-  },
+},
   "author": "Rodrigo Gonçalves - @orodrigogo",
   "license": "ISC",
   "description": "API do App Nearby da NLW Pocket Mobile",
