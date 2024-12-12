@@ -12,9 +12,9 @@
     "knex": "node --import tsx ./node_modules/.bin/knex",
     "prisma": "npx prisma db pull && npx prisma generate"
 },
-  "author": "Rodrigo Gonçalves - @orodrigogo",
+  "author": "Rodrigo Lopes",
   "license": "ISC",
-  "description": "API do App Nearby da NLW Pocket Mobile",
+  "description": "API do App EatNow",
   "dependencies": {
     "@prisma/client": "^5.21.0",
     "express": "^4.19.2",
