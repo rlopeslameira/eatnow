@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "tsx watch src/server.ts",
-    "knex": "node --import tsx ./node_modules/.bin/knex"
+    "dev": "tsx watch src/server.ts",    
+    "build": "node ace build --production --ignore-ts-errors",
+    "knex": "node --import tsx ./node_modules/.bin/knex",
+    "start": "node server.js",
+    "prisma": "npx prisma db pull && npx prisma generate"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
