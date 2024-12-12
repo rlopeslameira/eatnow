@@ -1,5 +1,5 @@
 import express from "express"
-
+require('module-alias/register');
 import { routes } from "./routes"
 import { errorHandling } from "./middlewares/error-handling"
 
