@@ -1,2 +1,2 @@
-web: node build/server.js
-release: node build --force
+web: npm run start
+release: npm run build
