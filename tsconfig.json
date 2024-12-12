@@ -10,12 +10,11 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+
     "module": "node16",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     
     "skipLibCheck": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "build"]
+  }
 }
