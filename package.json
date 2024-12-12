@@ -13,8 +13,7 @@
     "build": "tsc",
     "start": "node build/server.js",
     "knex": "node --import tsx ./node_modules/.bin/knex",
-    "prisma": "npx prisma db pull && npx prisma generate",
-    "heroku-postbuild": "npm install && npm run build"
+    "prisma": "npx prisma db pull && npx prisma generate"    
   },
   "author": "Rodrigo Lopes",
   "license": "ISC",
