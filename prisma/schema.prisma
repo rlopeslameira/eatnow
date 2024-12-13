@@ -30,11 +30,11 @@ model Market {
   name        String   @db.VarChar(255)
   description String   @db.VarChar(255)
   coupons     Int
-  latitude    Float
-  longitude   Float
+  latitude    String   @default("") @db.VarChar(80)
+  longitude   String   @default("") @db.VarChar(80)
   address     String   @db.VarChar(255)
   phone       String   @db.VarChar(255)
-  cover       String   @db.VarChar(255)
+  cover       String   @db.Text
   categoryId  String   @map("category_id") @db.VarChar(255)
   categories  Category @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_markets_categories")
   rules       Rules[]
