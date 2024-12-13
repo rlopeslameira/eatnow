@@ -7,14 +7,40 @@ class MarketsController {
     try {
       const paramsSchema = z.object({
         category_id: z.string().uuid(),
+        latitude: z.number(),
+        longitude: z.number(),
       })
 
-      const { category_id } = paramsSchema.parse(request.params)
+      const { category_id='todos', latitude=0, longitude=0} = request.params;
+      console.log(category_id, latitude, longitude);
+      const maxDistance = 1;
+      
+      let baseQuery = `
+        SELECT
+            markets.*,
+            (
+                6371 * acos(
+                    cos(radians(${latitude})) * cos(radians(latitude)) * cos(radians(longitude) - radians(${longitude})) +
+                    sin(radians(${latitude})) * sin(radians(latitude))
+                )
+            ) AS distancia
+        FROM
+            markets
+      `;
+    
+      // Adiciona o filtro por categoria somente se `categoryId` não for "todos"
+      if (category_id !== 'todos') {
+        baseQuery += ` WHERE category_id = ${JSON.stringify(category_id)} `;
+      }
+    
+      // Continua com a cláusula HAVING e ORDER BY
+      baseQuery += `
+        HAVING distancia <= ${maxDistance}
+        ORDER BY distancia;
+      `;
 
-      const markets = await prisma.market.findMany({
-        where: { categoryId: category_id },
-        orderBy: { name: "asc" },
-      })
+      // Executa a consulta
+      const markets = await prisma.$queryRawUnsafe(baseQuery);
 
       return response.json(markets)
     } catch (error) {
