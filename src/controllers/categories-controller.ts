@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express"
-import { prisma } from "@/database/prisma"
-import { z } from "zod"
+import { prisma } from "../database/prisma"
 
 class CategoriesController {
   async index(request: Request, response: Response, next: NextFunction) {
